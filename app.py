@@ -29,6 +29,9 @@ def predict():
         tenant = request.form["Tenant Preferred"]
         contact = request.form["Point of Contact"]
 
+        if not (1 <= bhk <= 6 and 100 <= size <= 5000 and 1 <= bathroom <= 5):
+            return render_template("form.html", prediction_text="Invalid input values!")
+
         # Manual encoding (IMPORTANT — must match training columns)
         features = [
             bhk, size, bathroom,
